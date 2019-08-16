@@ -1,9 +1,9 @@
 export default class Pencil {
 
-    maxDurability: number
-    maxLength: number
-    currentDurability: number
-    currentLength: number
+    maxDurability: number;
+    maxLength: number;
+    currentDurability: number;
+    currentLength: number;
 
     constructor(maxDurability: number, maxLength: number) {
         this.maxDurability = maxDurability
