@@ -1,13 +1,14 @@
 import { Injectable } from '@angular/core';
 import PencilDegrader from '../Pencil/pencil-degrader';
 import Pencil from '../Pencil/pencil';
-
+import Paper from '../paper/paper';
+/***** private *****/
+// settings
 const PENCIL_DEGRADE_AMOUNT_LOWER = 1;
 const PENCIL_DEGRADE_AMOUNT_UPPER = 2;
-// private properties
+// properties
 const _pencilDegrader: PencilDegrader = new PencilDegrader();
-let _buffer: Array<string> = [];
-// private function
+// methods
 const _getDegradeAmount = (char) => {
 
   if (char === "\n") {
@@ -33,25 +34,24 @@ const _getDegradeAmount = (char) => {
 export class PencilService {
 
   constructor() {
-    this.clear();
   }
 
   //edit() is to modify an existing string
-  edit(pencil: Pencil, input: string, startFrom: number = 0) {
+  edit(paper: Paper, pencil: Pencil, input: string, startFrom: number = 0) {
     if (pencil.currentDurability === 0) return pencil;
 
     const inputArray = input.split('');
-    let writeIndex = Math.max(Math.min(_buffer.length, startFrom), 0);
+    let writeIndex = Math.max(Math.min(paper.chars.length, startFrom), 0);
     inputArray.forEach(char => {
       if (pencil.currentDurability === 0) return;
 
       let degradeAmount = _getDegradeAmount(char);
       if (pencil.currentDurability >= degradeAmount) {
-        if (_buffer[writeIndex] === " ") {
-          _buffer[writeIndex] = char
+        if (paper.chars[writeIndex] === " ") {
+          paper.chars[writeIndex] = char
         } else {
           // if we need to overwrite this index, we write @
-          _buffer[writeIndex] = "@"
+          paper.chars[writeIndex] = "@"
         }
         writeIndex++;
         pencil = _pencilDegrader.degrade(pencil, degradeAmount);
@@ -61,33 +61,24 @@ export class PencilService {
   }
 
   //write() is to append chars in the end
-  write(pencil: Pencil, input: string) {
+  write(paper: Paper, pencil: Pencil, input: string) {
     if (pencil.currentLength === 0) return pencil;
 
     const inputArray = input.split('');
-    let writeIndex = _buffer.length;
+    let writeIndex = paper.chars.length;
     inputArray.forEach(char => {
       let degradeAmount = _getDegradeAmount(char);
 
       if (pencil.currentDurability < degradeAmount) {
-        _buffer[writeIndex] = " ";
+        paper.chars[writeIndex] = " ";
       } else {
-        _buffer[writeIndex] = char
+        paper.chars[writeIndex] = char
       }
 
       pencil = _pencilDegrader.degrade(pencil, degradeAmount);
       writeIndex++;
     });
     return pencil
-  }
-
-  //transfer from buffer to 
-  output() {
-    return _buffer.join('');
-  }
-
-  clear() {
-    _buffer = [];
   }
 
 }
