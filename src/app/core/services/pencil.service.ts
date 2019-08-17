@@ -4,13 +4,16 @@ import Pencil from '../Pencil/pencil';
 import Paper from '../paper/paper';
 import PaperHelper from '../paper/paper-helper';
 /***** private *****/
-// settings
+// constants
 const PENCIL_DEGRADE_AMOUNT_LOWER = 1;
 const PENCIL_DEGRADE_AMOUNT_UPPER = 2;
 // properties
 const _pencilDegrader: PencilDegrader = new PencilDegrader();
 // methods
 const _getDegradeAmount = (char) => {
+  if (!char) {
+    return 0;
+  }
 
   if (char === "\n") {
     return 0;
