@@ -7,99 +7,99 @@ describe('PencilService', () => {
   const MAX_DURABILITY = 100;
   const MAX_LENGTH = 50;
 
-  let _pencilServices: PencilService;
-  let _pencilSharpener: PencilSharpener;
-  let _pencil: Pencil;
-  let _paper: Paper;
+  let pencilServices: PencilService;
+  let pencilSharpener: PencilSharpener;
+  let pencil: Pencil;
+  let paper: Paper;
 
   beforeAll(() => {
-    _pencilSharpener = new PencilSharpener();
+    pencilSharpener = new PencilSharpener();
   });
 
   beforeEach(() => {
-    _pencilServices = new PencilService();
-    _pencil = new Pencil(MAX_DURABILITY, MAX_LENGTH);
-    _paper = new Paper();
+    pencilServices = new PencilService();
+    pencil = new Pencil(MAX_DURABILITY, MAX_LENGTH);
+    paper = new Paper();
   });
 
   it(`should write a lower case word and reduce the pen's durability by 1`, () => {
 
-    _pencil = _pencilServices.write(_paper, _pencil, "a");
+    ({ paper, pencil } = pencilServices.write(paper, pencil, "a"));
 
-    expect(_paper.text).toBe("a");
+    expect(paper.text).toBe("a");
 
-    expect(_pencil.currentDurability).toBe(MAX_DURABILITY - 1);
+    expect(pencil.currentDurability).toBe(MAX_DURABILITY - 1);
 
 
   });
 
   it(`should write a upper case word and reduce the pen's durability by 2`, () => {
-    _pencil = _pencilServices.write(_paper, _pencil, "A");
+    ({ pencil } = pencilServices.write(paper, pencil, "A"));
 
-    expect(_paper.text).toBe("A");
+    expect(paper.text).toBe("A");
 
-    expect(_pencil.currentDurability).toBe(MAX_DURABILITY - 2);
+    expect(pencil.currentDurability).toBe(MAX_DURABILITY - 2);
   });
 
   it(`should not write with a pen of 0 length`, () => {
-    _pencil = new Pencil(1, 1);
-    _pencil = _pencilServices.write(_paper, _pencil, "a");
-    _pencil = _pencilSharpener.sharpen(_pencil, 1);
+    pencil = new Pencil(1, 1);
+    ({ pencil } = pencilServices.write(paper, pencil, "a"));
+    pencil = pencilSharpener.sharpen(pencil, 1);
 
-    expect(_paper.text).toBe("a");
-    expect(_pencil.currentLength).toBe(0);
-    expect(_pencil.currentDurability).toBe(0);
+    expect(paper.text).toBe("a");
+    expect(pencil.currentLength).toBe(0);
+    expect(pencil.currentDurability).toBe(0);
 
-    _pencil = _pencilServices.write(_paper, _pencil, "a");
-    expect(_paper.text).toBe("a");
+    ({ pencil, paper } = pencilServices.write(paper, pencil, "a"));
+    expect(paper.text).toBe("a");
 
-    _pencil = _pencilServices.write(_paper, _pencil, "b");
-    expect(_paper.text).toBe("a");
+    ({ pencil, paper } = pencilServices.write(paper, pencil, "b"));
+    expect(paper.text).toBe("a");
 
   });
 
 
   it(`writes "aa" with a pen of 1 durability`, () => {
-    _pencil = new Pencil(1, MAX_LENGTH);
-    _pencil = _pencilServices.write(_paper, _pencil, "aa");
-    expect(_paper.text).toBe("a ");
+    pencil = new Pencil(1, MAX_LENGTH);
+    ({ pencil, paper } = pencilServices.write(paper, pencil, "aa"));
+    expect(paper.text).toBe("a ");
   });
 
   it(`writes "A" with a pen of 1 durability`, () => {
-    _pencil = new Pencil(1, MAX_LENGTH);
-    _pencil = _pencilServices.write(_paper, _pencil, "A");
-    expect(_paper.text).toBe(" ");
+    pencil = new Pencil(1, MAX_LENGTH);
+    ({ pencil, paper } = pencilServices.write(paper, pencil, "A"));
+    expect(paper.text).toBe(" ");
   });
 
   it(`writes "Aa" with a pen of 1 durability`, () => {
-    _pencil = new Pencil(1, MAX_LENGTH);
-    _pencil = _pencilServices.write(_paper, _pencil, "Aa");
-    expect(_paper.text).toBe("  ");
+    pencil = new Pencil(1, MAX_LENGTH);
+    ({ pencil, paper } = pencilServices.write(paper, pencil, "Aa"));
+    expect(paper.text).toBe("  ");
   });
 
   it(`writes "aA" with a pen of 1 durability`, () => {
-    _pencil = new Pencil(1, MAX_LENGTH);
-    _pencil = _pencilServices.write(_paper, _pencil, "aA");
-    expect(_paper.text).toBe("a ");
+    pencil = new Pencil(1, MAX_LENGTH);
+    ({ pencil, paper } = pencilServices.write(paper, pencil, "aA"));
+    expect(paper.text).toBe("a ");
   });
 
   it(`writes " " with no point degration`, () => {
-    _pencil = new Pencil(MAX_DURABILITY, MAX_LENGTH);
-    _pencil = _pencilServices.write(_paper, _pencil, " ");
-    expect(_pencil.currentDurability).toBe(MAX_DURABILITY);
+    pencil = new Pencil(MAX_DURABILITY, MAX_LENGTH);
+    ({ pencil } = pencilServices.write(paper, pencil, " "));
+    expect(pencil.currentDurability).toBe(MAX_DURABILITY);
   });
 
   it(`writes "\n" with no point degration`, () => {
-    _pencil = new Pencil(MAX_DURABILITY, MAX_LENGTH);
-    _pencil = _pencilServices.write(_paper, _pencil, "\n");
-    expect(_pencil.currentDurability).toBe(MAX_DURABILITY);
+    pencil = new Pencil(MAX_DURABILITY, MAX_LENGTH);
+    ({ pencil } = pencilServices.write(paper, pencil, "\n"));
+    expect(pencil.currentDurability).toBe(MAX_DURABILITY);
   });
 
   it(`overwrites the same char with "@"`, () => {
-    _pencil = new Pencil(MAX_DURABILITY, MAX_LENGTH);
-    _pencil = _pencilServices.write(_paper, _pencil, "An       a day keeps the doctor away");
-    _pencil = _pencilServices.edit(_paper, _pencil, "artichoke", 3);
-    expect(_paper.text).toBe("An artich@k@ay keeps the doctor away");
+    pencil = new Pencil(MAX_DURABILITY, MAX_LENGTH);
+    ({ pencil, paper } = pencilServices.write(paper, pencil, "An       a day keeps the doctor away"));
+    ({ pencil, paper } = pencilServices.edit(paper, pencil, "artichoke", 3));
+    expect(paper.text).toBe("An artich@k@ay keeps the doctor away");
   });
 
 });
