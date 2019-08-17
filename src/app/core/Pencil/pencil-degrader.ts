@@ -3,13 +3,9 @@ import Pencil from './pencil';
 
 export default class PencilDegrader implements Degrader<Pencil> {
 
-    degrade(pencil: Pencil, value: number): Pencil {
+    degrade(pencil: Pencil, pencilDegradeAmount: number): Pencil {
         let newPencil = Object.assign(new Pencil(0, 0), pencil);
-        if (newPencil.currentDurability >= value) {
-            newPencil.currentDurability -= value;
-        } else {
-            newPencil.currentDurability = 0;
-        }
+        newPencil.currentDurability = Math.max(newPencil.currentDurability - pencilDegradeAmount, 0);
         return newPencil;
     }
 
