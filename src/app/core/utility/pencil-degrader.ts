@@ -13,6 +13,4 @@ export default class PencilDegrader implements Degrader<Pencil> {
         return newPencil;
     }
 
-
-
 }
