@@ -1,4 +1,4 @@
-import Degrader from "../../interfaces/degrader";
+import Degrader from "../interfaces/degrader";
 import Eraser from './eraser';
 
 export default class EraserDegrader implements Degrader<Eraser> {

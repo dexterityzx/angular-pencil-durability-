@@ -1,4 +1,4 @@
-import Degrader from "../../interfaces/degrader";
+import Degrader from "../interfaces/degrader";
 import Pencil from './pencil';
 
 export default class PencilDegrader implements Degrader<Pencil> {
