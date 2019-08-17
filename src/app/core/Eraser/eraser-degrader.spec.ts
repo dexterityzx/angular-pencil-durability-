@@ -1,4 +1,4 @@
-import Eraser from '../entity/eraser';
+import Eraser from './eraser';
 import EraserDegrader from './eraser-degrader';
 
 describe('Eraser Degrader', () => {

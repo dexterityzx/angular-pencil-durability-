@@ -1,5 +1,5 @@
-import Degrader from "./degrader";
-import Pencil from '../entity/pencil';
+import Degrader from "../../interfaces/degrader";
+import Pencil from './pencil';
 
 export default class PencilDegrader implements Degrader<Pencil> {
 

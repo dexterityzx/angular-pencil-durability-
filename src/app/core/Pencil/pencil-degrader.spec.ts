@@ -1,5 +1,5 @@
 import PencilDegrader from "./pencil-degrader";
-import Pencil from '../entity/pencil';
+import Pencil from './pencil';
 
 describe('Pencil Degrader', () => {
 
