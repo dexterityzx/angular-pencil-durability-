@@ -1,3 +1,4 @@
   <mat-form-field class="container">
-    <textarea matInput placeholder="Paper" readonly rows="10"></textarea>
+    <textarea #textArea matInput placeholder="Paper" readonly rows="10"
+      (mouseup)="setSelectionRange(textArea)"></textarea>
   </mat-form-field>

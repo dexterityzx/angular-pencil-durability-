@@ -38,7 +38,6 @@ export class EraserService {
     from = Math.max(Math.min(PaperHelper.readString(paper).length, from), 0);
     to = Math.max(Math.min(PaperHelper.readString(paper).length, to), 0);
 
-
     for (let i = to - 1; i >= from; i--) {
       let charToErase = PaperHelper.readChar(paper, i)
       let degradeAmount = _getDegradeAmount(charToErase);

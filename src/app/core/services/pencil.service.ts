@@ -45,9 +45,11 @@ export class PencilService {
     if (pencil.currentDurability === 0) return { pencil, paper };
 
     const inputArray = input.split('');
-    let writeIndex = Math.max(Math.min(PaperHelper.readString(paper).length, startFrom), 0);
+    const paparTextLength = PaperHelper.readString(paper).length
+    let writeIndex = Math.max(Math.min(paparTextLength, startFrom), 0);
     inputArray.forEach(char => {
       if (pencil.currentDurability === 0) return;
+      if (writeIndex >= paparTextLength) return;
 
       let degradeAmount = _getDegradeAmount(char);
       if (pencil.currentDurability >= degradeAmount) {

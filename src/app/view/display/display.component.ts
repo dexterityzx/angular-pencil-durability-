@@ -9,14 +9,22 @@ import { AppStateService } from 'src/app/core/services/app-state.service';
 })
 export class DisplayComponent implements OnInit {
 
-  @ViewChild('paper', { static: false }) paperView: ElementRef;
+  @ViewChild('textArea', { static: false }) paperView: ElementRef;
 
   constructor(private _appState: AppStateService) { }
 
   ngOnInit() {
+  }
+
+  ngAfterViewInit() {
     this._appState.paper.subscribe((nextPaper: Paper) => {
       this.paperView.nativeElement.value = nextPaper.text;
     });
+  }
+
+  setSelectionRange(textArea) {
+    this._appState.selectionStart.next(textArea.selectionStart);
+    this._appState.selectionEnd.next(textArea.selectionEnd);
   }
 
 }

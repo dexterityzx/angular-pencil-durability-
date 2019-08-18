@@ -1,6 +1,8 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { ActionComponent } from './action.component';
+import { MAT_IMPORT } from '../ng-material.import';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 describe('ActionComponent', () => {
   let component: ActionComponent;
@@ -8,9 +10,13 @@ describe('ActionComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ ActionComponent ]
+      declarations: [ActionComponent],
+      imports: [
+        BrowserAnimationsModule,
+        ...MAT_IMPORT
+      ]
     })
-    .compileComponents();
+      .compileComponents();
   }));
 
   beforeEach(() => {

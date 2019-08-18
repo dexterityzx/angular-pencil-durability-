@@ -2,21 +2,26 @@ import { Injectable } from '@angular/core';
 import Paper from '../paper/paper';
 import Pencil from '../Pencil/pencil';
 import Eraser from '../Eraser/eraser';
-import { Subject } from 'rxjs/internal/Subject';
+import { BehaviorSubject } from 'rxjs/internal/BehaviorSubject';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AppStateService {
 
-  paper: Subject<Paper>;
-  pencil: Subject<Pencil>;
-  eraser: Subject<Eraser>;
+  paper: BehaviorSubject<Paper>;
+  pencil: BehaviorSubject<Pencil>;
+  eraser: BehaviorSubject<Eraser>;
+
+  selectionStart: BehaviorSubject<number>;
+  selectionEnd: BehaviorSubject<number>;
 
   constructor() {
-    this.paper = new Subject<Paper>();
-    this.pencil = new Subject<Pencil>();
-    this.eraser = new Subject<Eraser>();
+    this.paper = new BehaviorSubject<Paper>(new Paper());
+    this.pencil = new BehaviorSubject<Pencil>(new Pencil(100, 100));
+    this.eraser = new BehaviorSubject<Eraser>(new Eraser(100));
+    this.selectionStart = new BehaviorSubject<number>(0);
+    this.selectionEnd = new BehaviorSubject<number>(0);
   }
 
 }
