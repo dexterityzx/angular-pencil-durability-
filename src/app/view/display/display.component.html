@@ -1,4 +1,23 @@
-  <mat-form-field class="container">
-    <textarea #textArea matInput placeholder="Paper" readonly rows="10"
-      (mouseup)="setSelectionRange(textArea)"></textarea>
+<div class="container" fxLayout="row" fxLayoutGap="10px">
+  <mat-form-field fxFlex="80">
+    <textarea #paperTextarea matInput placeholder="Paper" readonly rows="15"
+      (mouseup)="setSelectionRange(paperTextarea)"></textarea>
   </mat-form-field>
+
+  <div fxFlex fxLayout="column" fxLayoutGap="10px">
+    <label>Selection</label>
+    <mat-form-field>
+      <input matInput placeholder="Start" [value]="selectionStart" readonly>
+    </mat-form-field>
+    <mat-form-field>
+      <input matInput placeholder="End" [value]="selectionEnd" readonly>
+    </mat-form-field>
+    <mat-form-field>
+      <input matInput placeholder="Length" [value]="selectionLength" readonly>
+    </mat-form-field>
+    <mat-form-field>
+      <input matInput placeholder="Text" [value]="selectedText" readonly>
+    </mat-form-field>
+  </div>
+</div>
+<mat-divider></mat-divider>
