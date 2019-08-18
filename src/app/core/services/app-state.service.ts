@@ -1,5 +1,4 @@
 import { Injectable } from '@angular/core';
-import { APP_MODE } from '../constants';
 import Paper from '../paper/paper';
 import Pencil from '../Pencil/pencil';
 import Eraser from '../Eraser/eraser';
