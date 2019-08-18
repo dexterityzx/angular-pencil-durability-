@@ -14,6 +14,9 @@ export class AppStateService {
   eraser: Subject<Eraser>;
 
   constructor() {
+    this.paper = new Subject<Paper>();
+    this.pencil = new Subject<Pencil>();
+    this.eraser = new Subject<Eraser>();
   }
 
 }
