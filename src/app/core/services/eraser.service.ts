@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import Paper from '../paper/paper';
-import Eraser from '../Eraser/eraser';
-import EraserDegrader from '../Eraser/eraser-degrader';
+import Eraser from '../eraser/eraser';
+import EraserDegrader from '../eraser/eraser-degrader';
 import PaperHelper from '../paper/paper-helper';
 /***** private *****/
 // constants

@@ -1,6 +1,6 @@
 import { PencilService } from './pencil.service';
-import Pencil from '../Pencil/pencil';
-import PencilSharpener from '../Pencil/pencil-sharpener';
+import Pencil from '../pencil/pencil';
+import PencilSharpener from '../pencil/pencil-sharpener';
 import Paper from '../paper/paper';
 
 describe('PencilService', () => {
@@ -100,6 +100,17 @@ describe('PencilService', () => {
     ({ pencil, paper } = pencilServices.write(paper, pencil, "An       a day keeps the doctor away"));
     ({ pencil, paper } = pencilServices.edit(paper, pencil, "artichoke", 3));
     expect(paper.text).toBe("An artich@k@ay keeps the doctor away");
+  });
+
+  it(`can sharpen a pencil`, () => {
+    let testString = "133"
+    pencil = new Pencil(MAX_DURABILITY, MAX_LENGTH);
+    ({ pencil } = pencilServices.write(paper, pencil, testString));
+    expect(pencil.currentDurability).toBe(pencil.maxDurability - testString.length);
+
+    pencil = pencilServices.sharpen(pencil);
+    expect(pencil.currentDurability).toBe(pencil.maxDurability);
+
   });
 
 });

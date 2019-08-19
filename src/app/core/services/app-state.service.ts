@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import Paper from '../paper/paper';
-import Pencil from '../Pencil/pencil';
-import Eraser from '../Eraser/eraser';
+import Pencil from '../pencil/pencil';
+import Eraser from '../eraser/eraser';
 import { BehaviorSubject } from 'rxjs/internal/BehaviorSubject';
 
 @Injectable({

@@ -146,4 +146,12 @@ describe('ActionComponent', () => {
       expect(appStateService.eraser.getValue().currentDurability).toBe(testDurabilityInput.value);
     })
   );
+
+  it(`can sharpen a pencil and make the pencil's current durability euqal to max durability`,
+    inject([AppStateService], (appStateService: AppStateService) => {
+      component.write(null, testInput);
+      component.sharpen(null);
+      expect(appStateService.pencil.getValue().currentDurability).toBe(appStateService.pencil.getValue().maxDurability);
+    })
+  );
 });

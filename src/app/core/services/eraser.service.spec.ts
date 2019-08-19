@@ -1,10 +1,10 @@
 import { TestBed } from '@angular/core/testing';
 
 import { EraserService } from './eraser.service';
-import Pencil from '../Pencil/pencil';
+import Pencil from '../pencil/pencil';
 import Paper from '../paper/paper';
 import { PencilService } from './pencil.service';
-import Eraser from '../Eraser/eraser';
+import Eraser from '../eraser/eraser';
 
 describe('EraserService', () => {
   const MAX_PENCIL_DURABILITY = 100;

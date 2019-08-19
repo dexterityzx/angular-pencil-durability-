@@ -3,8 +3,8 @@ import { AppStateService } from 'src/app/core/services/app-state.service';
 import { PencilService } from 'src/app/core/services/pencil.service';
 import { EraserService } from 'src/app/core/services/eraser.service';
 import Paper from 'src/app/core/paper/paper';
-import Pencil from 'src/app/core/Pencil/pencil';
-import Eraser from 'src/app/core/Eraser/eraser';
+import Pencil from 'src/app/core/pencil/pencil';
+import Eraser from 'src/app/core/eraser/eraser';
 
 @Component({
   selector: 'app-action',
@@ -12,6 +12,7 @@ import Eraser from 'src/app/core/Eraser/eraser';
   styleUrls: ['./action.component.css']
 })
 export class ActionComponent implements OnInit {
+
 
   constructor(
     private _appStateService: AppStateService,
@@ -53,6 +54,10 @@ export class ActionComponent implements OnInit {
 
     this._appStateService.paper.next(paper);
     this._appStateService.eraser.next(eraser);
+  }
+
+  sharpen($event) {
+    this._appStateService.pencil.next(this._pencilService.sharpen(this._appStateService.pencil.getValue()));
   }
 
   newPaper($event) {

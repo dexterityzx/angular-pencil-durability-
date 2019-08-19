@@ -5,8 +5,8 @@ import { MAT_IMPORT } from '../ng-material.import';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AppStateService } from 'src/app/core/services/app-state.service';
 import Paper from 'src/app/core/paper/paper';
-import Pencil from 'src/app/core/Pencil/pencil';
-import Eraser from 'src/app/core/Eraser/eraser';
+import Pencil from 'src/app/core/pencil/pencil';
+import Eraser from 'src/app/core/eraser/eraser';
 
 describe('DisplayComponent', () => {
   let component: DisplayComponent;
