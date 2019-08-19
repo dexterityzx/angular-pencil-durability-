@@ -1,11 +1,18 @@
-<div class="container" fxLayout="row" fxLayoutGap="10px">
-  <mat-form-field fxFlex="80">
-    <textarea #paperTextarea matInput placeholder="Paper" readonly rows="15"
-      (mouseup)="setSelectionRange(paperTextarea)"></textarea>
-  </mat-form-field>
+<div class="container" fxLayout="row" fxLayoutGap="10px" fxLayoutAlign="space-evenly">
+  <div fxLayout="column" fxLayoutGap="10px" fxFlex="40">
+    <label>
+      <h3>Paper</h3>
+    </label>
+    <mat-form-field fxFlex="40">
+      <textarea #paperTextarea matInput placeholder="Paper" readonly rows="15"
+        (mouseup)="setSelectionRange(paperTextarea)"></textarea>
+    </mat-form-field>
+  </div>
 
-  <div fxFlex fxLayout="column" fxLayoutGap="10px">
-    <label>Selection</label>
+  <div fxLayout="column" fxLayoutGap="10px" fxFlex="10">
+    <label>
+      <h3>Selection</h3>
+    </label>
     <mat-form-field>
       <input matInput placeholder="Start" [value]="selectionStart" readonly>
     </mat-form-field>
@@ -19,5 +26,36 @@
       <input matInput placeholder="Text" [value]="selectedText" readonly>
     </mat-form-field>
   </div>
+
+  <div fxLayout="column" fxLayoutGap="10px" fxFlex="10">
+    <label>
+      <h3>Pencil</h3>
+    </label>
+    <mat-form-field>
+      <input matInput placeholder="Current Durability" #pencilcurrentDurability readonly>
+    </mat-form-field>
+    <mat-form-field>
+      <input matInput placeholder="Max Durability" #pencilMaxDurability readonly>
+    </mat-form-field>
+    <mat-form-field>
+      <input matInput placeholder="Current Length" #pencilCurrentLength readonly>
+    </mat-form-field>
+    <mat-form-field>
+      <input matInput placeholder="Max Length" #pencilMaxLength readonly>
+    </mat-form-field>
+  </div>
+
+  <div fxLayout="column" fxLayoutGap="10px" fxFlex="10">
+    <label>
+      <h3>Eraser</h3>
+    </label>
+    <mat-form-field>
+      <input matInput placeholder="Current Durability" #eraserCurrentDurability readonly>
+    </mat-form-field>
+    <mat-form-field>
+      <input matInput placeholder="max Durability" #eraserMaxDurability readonly>
+    </mat-form-field>
+  </div>
+
 </div>
 <mat-divider></mat-divider>

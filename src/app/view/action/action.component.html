@@ -1,41 +1,60 @@
-<div class="container" fxLayout="column" fxLayoutGap="15px">
-  <mat-form-field>
-    <input matInput placeholder="Write" #writeInput>
-    <button mat-button mat-icon-button matSuffix (click)="write($event,writeInput)">
-      <mat-icon>edit</mat-icon>
-    </button>
-  </mat-form-field>
-
-  <mat-form-field>
-    <input matInput placeholder="Edit" #editInput>
-    <button mat-button mat-icon-button matSuffix (click)="edit($event,editInput)">
-      <mat-icon>edit</mat-icon>
-    </button>
-  </mat-form-field>
-
-  <button mat-stroked-button (click)="erase($event)">Erase</button>
-
-  <mat-divider></mat-divider>
-
-  <div fxLayout="row" fxLayoutGap="10px">
+<div class="container" fxLayout="row" fxLayoutGap="10px" fxLayoutAlign="space-evenly">
+  <div fxLayout="column" fxLayoutGap="10px" fxFlex="40">
+    <label>
+      <h3>Editing</h3>
+    </label>
     <mat-form-field>
-      <input matInput placeholder="Durability" #pencilDurabilityInput>
+      <input matInput placeholder="Write" #writeInput>
+      <button mat-button mat-icon-button matSuffix (click)="write($event,writeInput)">
+        <mat-icon>edit</mat-icon>
+      </button>
     </mat-form-field>
+
     <mat-form-field>
-      <input matInput placeholder="Length" #pencilLengthInput>
+      <input matInput placeholder="Edit" #editInput>
+      <button mat-button mat-icon-button matSuffix (click)="edit($event,editInput)">
+        <mat-icon>edit</mat-icon>
+      </button>
     </mat-form-field>
-    <button mat-button (click)="newPencil($event,pencilDurabilityInput,pencilLengthInput)">New Pencil</button>
+
+    <button mat-stroked-button (click)="erase($event)">Erase</button>
   </div>
 
-  <div fxLayout="row" fxLayoutGap="10px">
-    <mat-form-field>
-      <input matInput placeholder="Durability" #eraserDurability>
-    </mat-form-field>
-    <button mat-button (click)="newEraser($event,eraserDurability)">New Eraser</button>
-  </div>
+  <div fxLayout="column" fxLayoutGap="10px" fxFlex="40">
+    <label>
+      <h3>Refresh</h3>
+    </label>
+    <div fxLayout="row" fxLayoutGap="30px">
+      <div fxLayout="column" fxLayoutGap="10px">
+        <label>
+          <strong>Pencil</strong>
+        </label>
+        <mat-form-field>
+          <input matInput placeholder="Durability" #pencilDurabilityInput>
+        </mat-form-field>
+        <mat-form-field>
+          <input matInput placeholder="Length" #pencilLengthInput>
+        </mat-form-field>
+        <button mat-stroked-button (click)="newPencil($event,pencilDurabilityInput,pencilLengthInput)">New
+          Pencil</button>
+      </div>
 
-  <div fxLayout="row" fxLayoutGap="10px">
-    <button mat-button (click)="newPaper($event)">New Paper</button>
-  </div>
+      <div fxLayout="column" fxLayoutGap="10px">
+        <label>
+          <strong>Eraser</strong>
+        </label>
+        <mat-form-field>
+          <input matInput placeholder="Durability" #eraserDurability>
+        </mat-form-field>
+        <button mat-stroked-button (click)="newEraser($event,eraserDurability)">New Eraser</button>
+      </div>
 
+      <div fxLayout="column" fxLayoutGap="10px">
+        <label>
+          <strong>Paper</strong>
+        </label>
+        <button mat-stroked-button (click)="newPaper($event)">New Paper</button>
+      </div>
+    </div>
+  </div>
 </div>

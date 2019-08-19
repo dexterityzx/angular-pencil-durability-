@@ -77,4 +77,28 @@ describe('DisplayComponent', () => {
 
     })
   );
+
+  it(`should update pencil's durability after writing`,
+    inject([AppStateService], (appStateService: AppStateService) => {
+
+    })
+  );
+
+  it(`should update eraser's durability after erasing`,
+    inject([AppStateService], (appStateService: AppStateService) => {
+
+    })
+  );
+
+  it(`should update pencil's max durability after creating new pencil`,
+    inject([AppStateService], (appStateService: AppStateService) => {
+
+    })
+  );
+
+  it(`should update eraser's max durability after creating new eraser`,
+    inject([AppStateService], (appStateService: AppStateService) => {
+
+    })
+  );
 });
