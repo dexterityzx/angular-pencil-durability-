@@ -29,7 +29,7 @@ const _getDegradeAmount = (char) => {
 export class EraserService {
 
   constructor() { }
-
+  // this will erase a range of the words on paper with an eraser, and return a new state of eraser and paper.
   erase(paper: Paper, eraser: Eraser, from: number, to: number): { eraser: Eraser, paper: Paper } {
     if (eraser.currentDurability === 0) return { eraser, paper };
 

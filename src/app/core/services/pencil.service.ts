@@ -39,7 +39,7 @@ export class PencilService {
   constructor() {
   }
 
-  //edit() is to modify an existing string
+  //edit() is to modify an existing string in a paper
   edit(paper: Paper, pencil: Pencil, input: string, startFrom: number = 0): { pencil: Pencil, paper: Paper } {
     if (pencil.currentDurability === 0) return { pencil, paper };
 
@@ -65,7 +65,7 @@ export class PencilService {
     return { pencil, paper }
   }
 
-  //write() is to append chars in the end
+  //write() is to append chars in the end of a paper
   write(paper: Paper, pencil: Pencil, input: string): { pencil: Pencil, paper: Paper } {
     if (pencil.currentLength === 0) return { pencil, paper };
 
