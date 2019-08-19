@@ -15,4 +15,9 @@ export default class EraserHelper {
         return newEraser;
     }
 
+    static create(maxDurability: number) {
+        maxDurability = Math.max(maxDurability, 1);
+        return new Eraser(maxDurability);
+    }
+
 }

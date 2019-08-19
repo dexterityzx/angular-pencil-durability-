@@ -3,9 +3,8 @@ import { AppStateService } from 'src/app/core/services/app-state.service';
 import { PencilService } from 'src/app/core/services/pencil.service';
 import { EraserService } from 'src/app/core/services/eraser.service';
 import Paper from 'src/app/core/paper/paper';
-import Pencil from 'src/app/core/pencil/pencil';
-import Eraser from 'src/app/core/eraser/eraser';
 import PencilHelper from 'src/app/core/pencil/pencil-helper';
+import EraserHelper from 'src/app/core/eraser/eraser-helper';
 
 @Component({
   selector: 'app-action',
@@ -80,6 +79,6 @@ export class ActionComponent implements OnInit {
   }
 
   newEraser($event, durabilityInput: { value: number }) {
-    this._appStateService.eraser.next(new Eraser(durabilityInput.value));
+    this._appStateService.eraser.next(EraserHelper.create(durabilityInput.value));
   }
 }
