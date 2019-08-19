@@ -48,12 +48,19 @@ export class ActionComponent implements OnInit {
   erase($event) {
     let selectionStart = this._appStateService.selectionStart.getValue();
     let selectionEnd = this._appStateService.selectionEnd.getValue();
-    if (selectionStart == selectionEnd) return;
+
 
     let paper = this._appStateService.paper.getValue();
     let eraser = this._appStateService.eraser.getValue();
 
-    ({ paper, eraser } = this._eraserService.erase(paper, eraser, selectionStart, selectionEnd));
+    if (selectionStart == selectionEnd) {
+      ({ paper, eraser } = this._eraserService.erase(paper, eraser, selectionEnd - 1, selectionEnd));
+      this._appStateService.selectionStart.next(Math.max(selectionEnd - 1, 0));
+      this._appStateService.selectionEnd.next(Math.max(selectionEnd - 1, 0));
+    }
+    else {
+      ({ paper, eraser } = this._eraserService.erase(paper, eraser, selectionStart, selectionEnd));
+    }
 
     this._appStateService.paper.next(paper);
     this._appStateService.eraser.next(eraser);

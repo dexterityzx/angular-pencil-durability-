@@ -69,15 +69,31 @@ describe('ActionComponent', () => {
     })
   );
 
-  it('should erase the words from the paper', inject([AppStateService], (appStateService: AppStateService) => {
-    component.write(null, testInput);
+  it('should erase the words from the paper for a selected range',
+    inject([AppStateService], (appStateService: AppStateService) => {
+      component.write(null, testInput);
 
-    appStateService.selectionStart.next(2);
-    appStateService.selectionEnd.next(3);
+      appStateService.selectionStart.next(2);
+      appStateService.selectionEnd.next(3);
 
-    component.erase(null);
-    expect(appStateService.paper.getValue().text).toBe('he lo')
-  })
+      component.erase(null);
+      expect(appStateService.paper.getValue().text).toBe('he lo')
+    })
+  );
+
+  it('should erase a char from the selection end when selection start equals to selection end',
+    inject([AppStateService], (appStateService: AppStateService) => {
+      component.write(null, testInput);
+
+      appStateService.selectionStart.next(3);
+      appStateService.selectionEnd.next(3);
+
+      component.erase(null);
+      component.erase(null);
+      component.erase(null);
+
+      expect(appStateService.paper.getValue().text).toBe('   lo')
+    })
   );
 
   it(`should reduce the eraser's durability after erasing`,
