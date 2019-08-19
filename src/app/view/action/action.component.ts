@@ -13,7 +13,6 @@ import Eraser from 'src/app/core/eraser/eraser';
 })
 export class ActionComponent implements OnInit {
 
-
   constructor(
     private _appStateService: AppStateService,
     private _pencilService: PencilService,
@@ -29,6 +28,8 @@ export class ActionComponent implements OnInit {
     ({ paper, pencil } = this._pencilService.write(paper, pencil, writeInput.value));
     this._appStateService.paper.next(paper);
     this._appStateService.pencil.next(pencil);
+    //clear input
+    writeInput.value = "";
   }
 
   edit($event, editInput: { value: string }) {
@@ -40,6 +41,8 @@ export class ActionComponent implements OnInit {
     ({ paper, pencil } = this._pencilService.edit(paper, pencil, editInput.value, selectionStart));
     this._appStateService.paper.next(paper);
     this._appStateService.pencil.next(pencil);
+    //clear input
+    editInput.value = "";
   }
 
   erase($event) {

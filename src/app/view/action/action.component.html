@@ -4,14 +4,14 @@
       <h3>Editing</h3>
     </label>
     <mat-form-field>
-      <input matInput placeholder="Write" #writeInput>
+      <input matInput placeholder="Write" #writeInput (keyup.enter)="write($event,writeInput)">
       <button mat-button mat-icon-button matSuffix (click)="write($event,writeInput)">
         <mat-icon>edit</mat-icon>
       </button>
     </mat-form-field>
 
     <mat-form-field>
-      <input matInput placeholder="Edit" #editInput>
+      <input matInput placeholder="Edit" #editInput (keyup.enter)="edit($event,editInput)">
       <button mat-button mat-icon-button matSuffix (click)="edit($event,editInput)">
         <mat-icon>edit</mat-icon>
       </button>

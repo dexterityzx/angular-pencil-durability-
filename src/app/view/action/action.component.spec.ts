@@ -38,8 +38,26 @@ describe('ActionComponent', () => {
 
   it('should write to the paper',
     inject([AppStateService], (appStateService: AppStateService) => {
+      // we save the value because the input will be clear after writing the paper
+      let value = testInput.value;
+
       component.write(null, testInput);
-      expect(appStateService.paper.getValue().text).toBe(testInput.value);
+
+      expect(appStateService.paper.getValue().text).toBe(value);
+    })
+  );
+
+  it('should edit the word on the paper',
+    inject([AppStateService], (appStateService: AppStateService) => {
+      // we save the value because the input will be clear after writing the paper
+      component.write(null, testInput);
+
+      appStateService.selectionStart.next(2);
+
+      let testEditInput = { value: "hi" }
+      component.edit(null, testEditInput);
+
+      expect(appStateService.paper.getValue().text).toBe('he@@o');
     })
   );
 
