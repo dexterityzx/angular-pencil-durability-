@@ -1,3 +1,7 @@
 .container {
   width: 100%;
 }
+
+small {
+  color: #0000008a;
+}

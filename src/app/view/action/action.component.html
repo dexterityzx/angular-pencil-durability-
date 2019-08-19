@@ -8,6 +8,7 @@
       <button mat-button mat-icon-button matSuffix (click)="write($event,writeInput)">
         <mat-icon>edit</mat-icon>
       </button>
+      <mat-hint>*This will append string to the paper.</mat-hint>
     </mat-form-field>
 
     <mat-form-field>
@@ -15,11 +16,14 @@
       <button mat-button mat-icon-button matSuffix (click)="edit($event,editInput)">
         <mat-icon>edit</mat-icon>
       </button>
+      <mat-hint>*This will modify string to the paper from the selection start index.</mat-hint>
     </mat-form-field>
 
     <button mat-stroked-button (click)="erase($event)">Erase</button>
+    <small>*This will erase the string for the selected range from the back.</small>
 
     <button mat-stroked-button (click)="sharpen($event)">Sharpen</button>
+    <small>*This will sharpen the pencil.</small>
   </div>
 
   <div fxLayout="column" fxLayoutGap="10px" fxFlex="40">
