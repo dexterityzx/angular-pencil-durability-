@@ -3,6 +3,13 @@ import PaperHelper from './paper-helper';
 
 describe('Paper Helper', () => {
 
+    it(`can create a paper`, () => {
+
+        let paper = PaperHelper.create();
+        expect(paper instanceof Paper).toBeTruthy();
+
+    });
+
     it(`can write a char on a paper and return a paper`, () => {
         let paper: Paper = new Paper();
 

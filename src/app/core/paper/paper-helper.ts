@@ -31,4 +31,8 @@ export default class PaperHelper {
 
         return paper.chars.join('');
     }
+
+    static create() {
+        return new Paper();
+    }
 }

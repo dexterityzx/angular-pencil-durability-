@@ -5,6 +5,7 @@ import { EraserService } from 'src/app/core/services/eraser.service';
 import Paper from 'src/app/core/paper/paper';
 import PencilHelper from 'src/app/core/pencil/pencil-helper';
 import EraserHelper from 'src/app/core/eraser/eraser-helper';
+import PaperHelper from 'src/app/core/paper/paper-helper';
 
 @Component({
   selector: 'app-action',
@@ -71,7 +72,7 @@ export class ActionComponent implements OnInit {
   }
 
   newPaper($event) {
-    this._appStateService.paper.next(new Paper());
+    this._appStateService.paper.next(PaperHelper.create());
   }
 
   newPencil($event, durabilityInput: { value: number }, lengthInput: { value: number }) {
