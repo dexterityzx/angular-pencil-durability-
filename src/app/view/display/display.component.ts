@@ -20,7 +20,7 @@ export class DisplayComponent implements OnInit {
   ngOnInit() {
     this.selectionStart = 0;
     this.selectionEnd = 0;
-    this.selectionLength = this.selectionEnd - this.selectionEnd;
+    this.selectionLength = this.selectionEnd - this.selectionStart;
     this.selectedText = "";
   }
 
@@ -28,22 +28,31 @@ export class DisplayComponent implements OnInit {
 
     this._appState.paper.subscribe((nextPaper: Paper) => {
       this.paperView.nativeElement.value = nextPaper.text;
-      this.udpateSelection(this.paperView.nativeElement);
+      this.udpateSelectedText(this.paperView.nativeElement);
 
+    });
+    this._appState.selectionStart.subscribe(value => {
+      this.selectionStart = value;
+      this.udpateSelectionLength();
+    });
+    this._appState.selectionEnd.subscribe(value => {
+      this.selectionEnd = value;
+      this.udpateSelectionLength();
     });
   }
 
   setSelectionRange(textArea) {
     this._appState.selectionStart.next(textArea.selectionStart);
     this._appState.selectionEnd.next(textArea.selectionEnd);
-    this.udpateSelection(textArea);
+    this.udpateSelectedText(textArea);
   }
 
-  udpateSelection(textArea) {
-    this.selectionStart = textArea.selectionStart;
-    this.selectionEnd = textArea.selectionEnd;
-    this.selectionLength = textArea.selectionEnd - textArea.selectionStart;
+  udpateSelectedText(textArea) {
     this.selectedText = textArea.value.slice(this.selectionStart, this.selectionEnd);
+  }
+
+  udpateSelectionLength() {
+    this.selectionLength = Math.max(this.selectionEnd - this.selectionStart, 0);
   }
 
 

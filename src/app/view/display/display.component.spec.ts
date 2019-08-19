@@ -31,7 +31,40 @@ describe('DisplayComponent', () => {
     expect(component).toBeTruthy();
   });
 
-  it('should update selection when app state changes', () => {
+  it('should update paper view when app state changes',
+    inject([AppStateService], (appStateService: AppStateService) => {
+      let paper = new Paper();
+      paper.chars = ['1', '2', '3'];
+      appStateService.paper.next(paper);
+
+      const compiled = fixture.debugElement.nativeElement;
+      expect(compiled.querySelector('textarea').value).toBe(paper.text);
+    })
+  );
+
+  it('should update selection start when app state changes',
+    inject([AppStateService], (appStateService: AppStateService) => {
+      let paper = new Paper();
+      paper.chars = ['1', '2', '3'];
+      appStateService.paper.next(paper);
+
+      appStateService.selectionStart.next(2);
+      expect(component.selectionStart).toBe(2);
+    })
+  );
+
+  it('should update selection end when app state changes',
+    inject([AppStateService], (appStateService: AppStateService) => {
+      let paper = new Paper();
+      paper.chars = ['1', '2', '3'];
+      appStateService.paper.next(paper);
+
+      appStateService.selectionEnd.next(3);
+      expect(component.selectionEnd).toBe(3);
+    })
+  );
+
+  it('should update selection length when app state changes',
     inject([AppStateService], (appStateService: AppStateService) => {
       let paper = new Paper();
       paper.chars = ['1', '2', '3'];
@@ -40,11 +73,8 @@ describe('DisplayComponent', () => {
       appStateService.selectionStart.next(2);
       appStateService.selectionEnd.next(3);
 
-      expect(component.selectionStart).toBe(2);
-      expect(component.selectionStart).toBe(3);
-      expect(component.selectionLength).toBe(3 - 2);
-      expect(component.selectedText).toBe('23');
-    })
+      expect(component.selectionLength).toBe(1);
 
-  })
+    })
+  );
 });
