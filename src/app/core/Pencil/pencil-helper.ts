@@ -1,15 +1,17 @@
 import Degrader from "../interfaces/degrader";
 import Pencil from './pencil';
+import staticImplements from '../decorator/staticImplement.decorator';
 
-export default class PencilHelper implements Degrader<Pencil> {
+@staticImplements<Degrader<Pencil>>()
+export default class PencilHelper {
 
-    degrade(pencil: Pencil, pencilDegradeAmount: number): Pencil {
+    static degrade(pencil: Pencil, pencilDegradeAmount: number): Pencil {
         let newPencil = Object.assign(new Pencil(0, 0), pencil);
         newPencil.currentDurability = Math.max(newPencil.currentDurability - pencilDegradeAmount, 0);
         return newPencil;
     }
 
-    sharpen(pencil: Pencil, lengthDegradeAmount: number = 1) {
+    static sharpen(pencil: Pencil, lengthDegradeAmount: number = 1) {
         let newPencil = Object.assign(new Pencil(0, 0), pencil);
         newPencil.currentLength = Math.max(newPencil.currentLength - lengthDegradeAmount, 0);
         newPencil.currentDurability = newPencil.currentLength > 0 ? newPencil.maxDurability : 0;

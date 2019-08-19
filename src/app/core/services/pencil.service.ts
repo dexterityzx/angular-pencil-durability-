@@ -7,8 +7,6 @@ import PencilHelper from '../pencil/pencil-helper';
 // constants
 const PENCIL_DEGRADE_AMOUNT_LOWER = 1;
 const PENCIL_DEGRADE_AMOUNT_UPPER = 2;
-// properties
-const _pencilHelper: PencilHelper = new PencilHelper();
 // methods
 const _getDegradeAmount = (char) => {
   if (!char) {
@@ -61,7 +59,7 @@ export class PencilService {
           paper = PaperHelper.writeChar(paper, "@", writeIndex);
         }
         writeIndex++;
-        pencil = _pencilHelper.degrade(pencil, degradeAmount);
+        pencil = PencilHelper.degrade(pencil, degradeAmount);
       }
     });
     return { pencil, paper }
@@ -82,13 +80,13 @@ export class PencilService {
         paper = PaperHelper.writeChar(paper, char, writeIndex);
       }
 
-      pencil = _pencilHelper.degrade(pencil, degradeAmount);
+      pencil = PencilHelper.degrade(pencil, degradeAmount);
       writeIndex++;
     });
     return { pencil, paper }
   }
 
   sharpen(pencil: Pencil): Pencil {
-    return _pencilHelper.sharpen(pencil);
+    return PencilHelper.sharpen(pencil);
   }
 }

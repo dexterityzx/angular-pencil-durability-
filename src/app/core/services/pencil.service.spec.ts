@@ -8,12 +8,11 @@ describe('PencilService', () => {
   const MAX_LENGTH = 50;
 
   let _pencilService: PencilService;
-  let _pencilHelper: PencilHelper;
+
   let pencil: Pencil;
   let paper: Paper;
 
   beforeAll(() => {
-    _pencilHelper = new PencilHelper();
   });
 
   beforeEach(() => {
@@ -44,7 +43,7 @@ describe('PencilService', () => {
   it(`should not write with a pen of 0 length`, () => {
     pencil = new Pencil(1, 1);
     ({ pencil } = _pencilService.write(paper, pencil, "a"));
-    pencil = _pencilHelper.sharpen(pencil, 1);
+    pencil = PencilHelper.sharpen(pencil, 1);
 
     expect(paper.text).toBe("a");
     expect(pencil.currentLength).toBe(0);
