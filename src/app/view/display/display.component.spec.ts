@@ -5,6 +5,8 @@ import { MAT_IMPORT } from '../ng-material.import';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AppStateService } from 'src/app/core/services/app-state.service';
 import Paper from 'src/app/core/paper/paper';
+import Pencil from 'src/app/core/Pencil/pencil';
+import Eraser from 'src/app/core/Eraser/eraser';
 
 describe('DisplayComponent', () => {
   let component: DisplayComponent;
@@ -78,27 +80,69 @@ describe('DisplayComponent', () => {
     })
   );
 
-  it(`should update pencil's durability after writing`,
+  it(`should update pencil's current durability`,
     inject([AppStateService], (appStateService: AppStateService) => {
+      let pencil = new Pencil(10, 20);
+      appStateService.pencil.next(pencil);
 
+      pencil = new Pencil(10, 20);
+      pencil.currentDurability = 5;
+      appStateService.pencil.next(pencil);
+
+      expect(component.pencilCurrentDurability).toBe(5);
     })
   );
 
-  it(`should update eraser's durability after erasing`,
+  it(`should update pencil's max durability`,
     inject([AppStateService], (appStateService: AppStateService) => {
+      let pencil = new Pencil(10, 20);
+      appStateService.pencil.next(pencil);
 
+      expect(component.pencilMaxDurability).toBe(10);
     })
   );
 
-  it(`should update pencil's max durability after creating new pencil`,
+  it(`should update pencil's current length`,
     inject([AppStateService], (appStateService: AppStateService) => {
+      let pencil = new Pencil(10, 20);
+      appStateService.pencil.next(pencil);
 
+      pencil = new Pencil(10, 20);
+      pencil.currentLength = 10;
+      appStateService.pencil.next(pencil);
+
+      expect(component.pencilCurrentDurability).toBe(10);
     })
   );
 
-  it(`should update eraser's max durability after creating new eraser`,
+  it(`should update pencil's max length`,
     inject([AppStateService], (appStateService: AppStateService) => {
+      let pencil = new Pencil(10, 20);
+      appStateService.pencil.next(pencil);
 
+      expect(component.pencilMaxLength).toBe(20);
+    })
+  );
+
+  it(`should update eraser's current durability`,
+    inject([AppStateService], (appStateService: AppStateService) => {
+      let eraser = new Eraser(10);
+      appStateService.eraser.next(eraser);
+
+      eraser = new Eraser(10);
+      eraser.currentDurability = 5
+      appStateService.eraser.next(eraser);
+
+      expect(component.eraserCurrentDurability).toBe(5);
+    })
+  );
+
+  it(`should update eraser's max durability`,
+    inject([AppStateService], (appStateService: AppStateService) => {
+      let eraser = new Eraser(10);
+      appStateService.eraser.next(eraser);
+
+      expect(component.eraserMaxDurability).toBe(10);
     })
   );
 });

@@ -32,16 +32,16 @@
       <h3>Pencil</h3>
     </label>
     <mat-form-field>
-      <input matInput placeholder="Current Durability" #pencilcurrentDurability readonly>
+      <input matInput placeholder="Current Durability" [value]="pencilCurrentDurability" readonly>
     </mat-form-field>
     <mat-form-field>
-      <input matInput placeholder="Max Durability" #pencilMaxDurability readonly>
+      <input matInput placeholder="Max Durability" [value]="pencilMaxDurability" readonly>
     </mat-form-field>
     <mat-form-field>
-      <input matInput placeholder="Current Length" #pencilCurrentLength readonly>
+      <input matInput placeholder="Current Length" [value]="pencilCurrentLength" readonly>
     </mat-form-field>
     <mat-form-field>
-      <input matInput placeholder="Max Length" #pencilMaxLength readonly>
+      <input matInput placeholder="Max Length" [value]="pencilMaxLength" readonly>
     </mat-form-field>
   </div>
 
@@ -50,10 +50,10 @@
       <h3>Eraser</h3>
     </label>
     <mat-form-field>
-      <input matInput placeholder="Current Durability" #eraserCurrentDurability readonly>
+      <input matInput placeholder="Current Durability" [value]="eraserCurrentDurability" readonly>
     </mat-form-field>
     <mat-form-field>
-      <input matInput placeholder="max Durability" #eraserMaxDurability readonly>
+      <input matInput placeholder="max Durability" [value]="eraserMaxDurability" readonly>
     </mat-form-field>
   </div>
 

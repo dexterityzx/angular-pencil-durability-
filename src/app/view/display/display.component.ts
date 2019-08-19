@@ -15,35 +15,51 @@ export class DisplayComponent implements OnInit {
   selectionLength: number;
   selectedText: string;
 
-  constructor(private _appState: AppStateService) { }
+  pencilCurrentDurability: number;
+  pencilMaxDurability: number;
+  pencilCurrentLength: number;
+  pencilMaxLength: number;
+
+  eraserCurrentDurability: number;
+  eraserMaxDurability: number;
+
+  constructor(private _appStateService: AppStateService) { }
 
   ngOnInit() {
-    this.selectionStart = 0;
-    this.selectionEnd = 0;
-    this.selectionLength = this.selectionEnd - this.selectionStart;
     this.selectedText = "";
+
+    this._appStateService.selectionStart.subscribe(value => {
+      this.selectionStart = value;
+      this.udpateSelectionLength();
+    });
+    this._appStateService.selectionEnd.subscribe(value => {
+      this.selectionEnd = value;
+      this.udpateSelectionLength();
+    });
+    this._appStateService.pencil.subscribe(pencil => {
+      this.pencilCurrentDurability = pencil.currentDurability;
+      this.pencilCurrentLength = pencil.currentLength;
+      this.pencilMaxDurability = pencil.maxDurability;
+      this.pencilMaxLength = pencil.maxLength;
+    });
+    this._appStateService.eraser.subscribe(eraser => {
+      this.eraserCurrentDurability = eraser.currentDurability;
+      this.eraserMaxDurability = eraser.maxDurability;
+    })
   }
 
   ngAfterViewInit() {
 
-    this._appState.paper.subscribe((nextPaper: Paper) => {
+    this._appStateService.paper.subscribe((nextPaper: Paper) => {
       this.paperView.nativeElement.value = nextPaper.text;
       this.udpateSelectedText(this.paperView.nativeElement);
+    });
 
-    });
-    this._appState.selectionStart.subscribe(value => {
-      this.selectionStart = value;
-      this.udpateSelectionLength();
-    });
-    this._appState.selectionEnd.subscribe(value => {
-      this.selectionEnd = value;
-      this.udpateSelectionLength();
-    });
   }
 
   setSelectionRange(textArea) {
-    this._appState.selectionStart.next(textArea.selectionStart);
-    this._appState.selectionEnd.next(textArea.selectionEnd);
+    this._appStateService.selectionStart.next(textArea.selectionStart);
+    this._appStateService.selectionEnd.next(textArea.selectionEnd);
     this.udpateSelectedText(textArea);
   }
 
