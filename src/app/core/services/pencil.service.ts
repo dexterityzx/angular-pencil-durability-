@@ -1,16 +1,14 @@
 import { Injectable } from '@angular/core';
-import PencilDegrader from '../pencil/pencil-degrader';
 import Pencil from '../pencil/pencil';
 import Paper from '../paper/paper';
 import PaperHelper from '../paper/paper-helper';
-import PencilSharpener from '../pencil/pencil-sharpener';
+import PencilHelper from '../pencil/pencil-helper';
 /***** private *****/
 // constants
 const PENCIL_DEGRADE_AMOUNT_LOWER = 1;
 const PENCIL_DEGRADE_AMOUNT_UPPER = 2;
 // properties
-const _pencilDegrader: PencilDegrader = new PencilDegrader();
-const _pencilSharpener: PencilSharpener = new PencilSharpener();
+const _pencilHelper: PencilHelper = new PencilHelper();
 // methods
 const _getDegradeAmount = (char) => {
   if (!char) {
@@ -63,7 +61,7 @@ export class PencilService {
           paper = PaperHelper.writeChar(paper, "@", writeIndex);
         }
         writeIndex++;
-        pencil = _pencilDegrader.degrade(pencil, degradeAmount);
+        pencil = _pencilHelper.degrade(pencil, degradeAmount);
       }
     });
     return { pencil, paper }
@@ -84,13 +82,13 @@ export class PencilService {
         paper = PaperHelper.writeChar(paper, char, writeIndex);
       }
 
-      pencil = _pencilDegrader.degrade(pencil, degradeAmount);
+      pencil = _pencilHelper.degrade(pencil, degradeAmount);
       writeIndex++;
     });
     return { pencil, paper }
   }
 
   sharpen(pencil: Pencil): Pencil {
-    return _pencilSharpener.sharpen(pencil);
+    return _pencilHelper.sharpen(pencil);
   }
 }
