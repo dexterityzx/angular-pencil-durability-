@@ -70,3 +70,35 @@ describe('PenciHelper : degrade a pencil', () => {
     });
 
 });
+
+describe('PenciHelper : crate a pencil', () => {
+
+    const MAX_DURABILITY = 100;
+    const MAX_LENGTH = 50;
+    let pencil: any;
+
+    beforeEach(() =>
+        pencil = PencilHelper.create(MAX_DURABILITY, MAX_LENGTH)
+    );
+
+    it(`should craete a pencil`, () => {
+        expect(pencil instanceof Pencil).toBeTruthy();
+    });
+
+    it(`should craete a pencil with a max durability`, () => {
+        expect(pencil.maxDurability).toEqual(MAX_DURABILITY);
+    });
+
+    it(`should craete a pencil with a max length`, () => {
+        expect(pencil.maxLength).toEqual(MAX_LENGTH);
+    });
+
+    it(`should craete a pencil with current durability equals to max durability`, () => {
+        expect(pencil.currentDurability).toEqual(MAX_DURABILITY);
+    });
+
+    it(`should craete a pencil with current length equals to max length`, () => {
+        expect(pencil.currentLength).toEqual(MAX_LENGTH);
+    });
+
+});

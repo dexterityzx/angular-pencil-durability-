@@ -18,4 +18,10 @@ export default class PencilHelper {
         return newPencil;
     }
 
+    static create(maxDurability: number, maxLength: number) {
+        maxDurability = Math.max(maxDurability, 1);
+        maxLength = Math.max(maxLength, 1);
+        return new Pencil(maxDurability, maxLength);
+    }
+
 }
