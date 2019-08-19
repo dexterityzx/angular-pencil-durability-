@@ -1,13 +1,11 @@
 import { Injectable } from '@angular/core';
 import Paper from '../paper/paper';
 import Eraser from '../eraser/eraser';
-import EraserDegrader from '../eraser/eraser-degrader';
 import PaperHelper from '../paper/paper-helper';
+import EraserHelper from '../eraser/eraser-helper';
 /***** private *****/
 // constants
 const ERASER_DEGRADE_AMOUNT = 1;
-// properties
-const _eraserDegrader: EraserDegrader = new EraserDegrader();
 // methods
 const _getDegradeAmount = (char) => {
   if (!char) {
@@ -44,7 +42,7 @@ export class EraserService {
       if (eraser.currentDurability >= degradeAmount) {
         paper = PaperHelper.writeChar(paper, " ", i);
       }
-      eraser = _eraserDegrader.degrade(eraser, degradeAmount);
+      eraser = EraserHelper.degrade(eraser, degradeAmount);
     }
 
     return { eraser, paper };
