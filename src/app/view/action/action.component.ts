@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ElementRef } from '@angular/core';
 import { AppStateService } from 'src/app/core/services/app-state.service';
 import { PencilService } from 'src/app/core/services/pencil.service';
 import { EraserService } from 'src/app/core/services/eraser.service';
@@ -21,7 +21,8 @@ export class ActionComponent implements OnInit {
   ngOnInit() {
   }
 
-  write($event, writeInput) {
+  write($event, writeInput: { value: string }) {
+
     let paper = this._appStateService.paper.getValue();
     let pencil = this._appStateService.pencil.getValue();
     ({ paper, pencil } = this._pencilService.write(paper, pencil, writeInput.value));
@@ -29,7 +30,7 @@ export class ActionComponent implements OnInit {
     this._appStateService.pencil.next(pencil);
   }
 
-  edit($event, editInput) {
+  edit($event, editInput: { value: string }) {
 
     let selectionStart = this._appStateService.selectionStart.getValue();
 
@@ -40,7 +41,7 @@ export class ActionComponent implements OnInit {
     this._appStateService.pencil.next(pencil);
   }
 
-  erase() {
+  erase($event) {
     let selectionStart = this._appStateService.selectionStart.getValue();
     let selectionEnd = this._appStateService.selectionEnd.getValue();
     if (selectionStart == selectionEnd) return;
@@ -54,15 +55,15 @@ export class ActionComponent implements OnInit {
     this._appStateService.eraser.next(eraser);
   }
 
-  newPaper() {
+  newPaper($event) {
     this._appStateService.paper.next(new Paper());
   }
 
-  newPencil($event, durabilityInput, lengthInput) {
+  newPencil($event, durabilityInput: { value: number }, lengthInput: { value: number }) {
     this._appStateService.pencil.next(new Pencil(durabilityInput.value, lengthInput.value));
   }
 
-  newEraser($event, durabilityInput) {
+  newEraser($event, durabilityInput: { value: number }) {
     this._appStateService.eraser.next(new Eraser(durabilityInput.value));
   }
 }
